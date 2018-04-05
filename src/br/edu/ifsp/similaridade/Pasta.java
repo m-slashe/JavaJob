@@ -60,8 +60,7 @@ public class Pasta {
     
     public List<Arquivo> getFiles(){
         return this.arquivos;
-    }
-    
+    }    
 }
 
 

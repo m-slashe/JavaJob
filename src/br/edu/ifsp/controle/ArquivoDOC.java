@@ -30,9 +30,11 @@ public class ArquivoDOC extends Arquivo {
         HWPFDocument document = new HWPFDocument(fis);
         extractor = new WordExtractor(document);
         String[] fileData = extractor.getParagraphText();
-        for (int i = 0; i < fileData.length; i++){
-            if (fileData[i] != null)
-                System.out.println(fileData[i]);
-        }
+        StringBuilder sb = new StringBuilder();
+        for (String fileData1 : fileData) {
+            if (fileData1 != null) {
+                sb.append(fileData1);
+            }
+        }        
     }    
 }

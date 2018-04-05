@@ -26,23 +26,9 @@ public class ArquivoPDF extends Arquivo {
         if (!document.isEncrypted()) {
             PDFTextStripper stripper = new PDFTextStripper();
             String text = stripper.getText(document);
-            text = text.replace(" – ", "");
-            text = text.replace("-\r\n", "");
-            text = text.replace("\r\n", " ");
-            text = text.replace(".", "");
-            text = text.replace(",", "").toLowerCase();
-            String[] palavras2 = text.split(" ");
-            for(String p: palavras2){
-                if(palavras.containsKey(p)){
-                    Integer quantidade = palavras.get(p);
-                    quantidade++;
-                    palavras.put(p, quantidade);
-                }else
-                    palavras.put(p, 1);
-            }
+            parseWords(text);
         }
         document.close();
-        #teste git
     }
     
 }

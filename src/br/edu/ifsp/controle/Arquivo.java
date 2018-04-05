@@ -39,4 +39,32 @@ public abstract class Arquivo {
     
     public abstract void getConteudo() throws Exception;
     
+    public String fixBrokenWords(String text){
+        return text;
+    }
+    
+    public void parseWords(String text){
+        text = text.replace("–\r\n", "");
+        text = text.replace("\r\n", " ");
+        text = text.replace(",", "");
+        text = text.replace(".", "");
+        text = fixBrokenWords(text);
+        String[] palavras2 = text.split(" ");
+        for(String p: palavras2){
+            p = p.toLowerCase();
+            if(palavras.containsKey(p)){
+                Integer quantidade = palavras.get(p);
+                quantidade++;
+                palavras.put(p, quantidade);
+            }else{
+                if(Controle.global.containsKey(p)){
+                    Integer quantidade = Controle.global.get(p);
+                    quantidade++;
+                    Controle.global.put(p, quantidade);
+                }else
+                    Controle.global.put(p, 1);
+                palavras.put(p, 1);
+            }                
+        }
+    }    
 }
